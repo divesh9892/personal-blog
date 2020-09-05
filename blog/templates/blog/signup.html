@@ -1,0 +1,257 @@
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Hello, world!</title>
+    <style>
+        #cover {
+    /*background-color:#f0f0f0;*/
+     background-image: linear-gradient(to bottom right, #80FF72, #80FF99);
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#cover-caption {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* only used for background overlay not needed for centering */
+form:before {
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.9);
+    z-index: -1;
+    border-radius: 10px;
+}
+.helptext1, .helptext2, .helptext3, .helptext4, .helptext5, .helptext6{
+	display:none;
+} 
+    </style>
+   <!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- <div class="container bg-light">
+    <div class="row">
+        <div class="col-md-6 formbox">
+            <form method="post" enctype="multipart/form-data" class=form-group>
+                {% csrf_token %}
+
+                 {% include 'blog/bs4forms.html' with form=user_form %}
+                {% include 'blog/bs4forms.html' with form=profile_form %}
+                <button type="submit" class="btn btn-success btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+</div> -->
+{%load widget_tweaks%}
+    <section id="cover" class="min-vh-100">
+        <div id="cover-caption">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                        <h1 class="display-8 py-2 text-truncate text-success">Sign-Up</h1>
+                        <hr style="margin-top:-4px;margin-bottom:20px;">
+                        <div class="px-2">
+                            <form class="justify-content-center" method="post" enctype="multipart/form-data">
+                            	{%csrf_token%}
+                                <div class="form-group">
+                                    <label class="sr-only">Name</label>
+                                      {% render_field profile_form.name autofocus="true" class="form-control input1" placeholder="Enter your name"%}
+                                      <small class="form-text text-muted text-left helptext1">Enter your full name</small>
+                                   <!--  <input type="text" class="form-control" placeholder="Enter your name"> -->
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Email</label>
+                                     {% render_field profile_form.email class="form-control input2" placeholder="Enter your email" %}
+                                     <small class="form-text text-muted text-left helptext2">Enter your valid email</small>
+                                   <!--  <input type="email" class="form-control" placeholder="Enter your email"> -->
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Username</label>
+                                    {% render_field user_form.username class="form-control input3" placeholder="Enter username" %}
+                                    <small class="form-text text-muted text-left helptext3">{{user_form.username.help_text}}</small>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter username"> -->
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Password</label>
+                                    {% render_field user_form.password1 class="form-control input4" placeholder="Enter password" %}
+                                    <small class="form-text text-muted text-left helptext4">{{user_form.password1.help_text}}</small>
+                                   <!--  <input type="password" class="form-control" placeholder="Enter password"> -->
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Confirm Password</label>
+                                    {% render_field user_form.password2 class="form-control input5" placeholder="Confirm password" %}
+                                    <small class="form-text text-muted text-left helptext5">{{user_form.password2.help_text}}</small>
+                                    <!-- <input type="password" class="form-control" placeholder="Confirm password"> -->
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                    	 {% render_field profile_form.profileImg class="form-control custom-file-input input6" id="customFile"%}
+                                        <!-- <input type="file" class="custom-file-input" id="customFile"> -->
+                                        <label class="custom-file-label text-left" for="customFile">Profile Pic (Optional)</label> 
+                                    </div>
+                                     <small class="form-text text-muted text-left helptext6">Optional. Enter your profile photo</small>
+                                </div>                 
+                                <button type="submit" class="btn btn-primary btn-success">Sign Up</button>
+
+<!-- {% if user_form.errors %}
+    {% for field in user_form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for error in user_form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+
+{% endif %}   -->                   
+                               <!-- {% if user_form.errors %}
+  <ul>
+    {% for key,value in user_form.errors.items %} 
+      <li>{{ key|escape }} : {{ value|escape }}</li>
+    {% endfor %}
+  </ul>
+{% endif %} -->
+{% if user_form.errors or profile_form.errors %}
+<script>
+	window.addEventListener("load", function(){
+     $("#exampleModal").modal("show");
+});
+   	
+</script>
+{% endif %} 
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+ 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title text-white" id="exampleModalLabel">Error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	{%if user_form.errors%}
+         {% for key,value in user_form.errors.items %} 
+      	
+      <!-- {{ key|escape }} -->
+      <li class="list-group-item list-group-item-danger"> {{ value|escape }}</li>
+      
+         {% endfor %}
+         {%elif profile_form.errors%}
+         		{% for key,value in profile_form.errors.items %} 
+      	
+      <!-- {{ key|escape }} -->
+      <li class="list-group-item list-group-item-danger"> {{ value|escape }}</li>
+      
+         {% endfor %}
+        
+         {%endif%}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <!--  <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+<script type="text/javascript">
+	$(".input1").on("focus", function() {
+    $(".helptext1").css("display","block");
+});
+    $(".input1").on("blur", function() {
+    $(".helptext1").css("display","none");
+});
+    
+
+    	$(".input2").on("focus", function() {
+    $(".helptext2").css("display","block");
+});
+    $(".input2").on("blur", function() {
+    $(".helptext2").css("display","none");
+});
+
+
+    	$(".input3").on("focus", function() {
+    $(".helptext3").css("display","block");
+});
+    $(".input3").on("blur", function() {
+    $(".helptext3").css("display","none");
+});
+
+
+    	$(".input4").on("focus", function() {
+    $(".helptext4").css("display","block");
+});
+    $(".input4").on("blur", function() {
+    $(".helptext4").css("display","none");
+});
+
+
+    	$(".input5").on("focus", function() {
+    $(".helptext5").css("display","block");
+});
+    $(".input5").on("blur", function() {
+    $(".helptext5").css("display","none");
+});
+
+
+    	$(".input6").on("focus", function() {
+    $(".helptext6").css("display","block");
+});
+    $(".input6").on("blur", function() {
+    $(".helptext6").css("display","none");
+});
+
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+{%extends 'blog/base.html'%}
+{%load widget_tweaks%}
+{%block content%}
+<style>
+    .form-root{
+    width: 70vw;
+    margin: auto;
+    padding-top:5vh;
+    padding-bottom:5vh;
+    font-size:20px;
+    font-weight:500;
+    }
+    .subbutton{
+    display:block;
+    width:100%;
+    margin:0;
+    }
+    .heading{
+    text-align:center;
+    color:#5FCB71;
+    margin-bottom:10px;
+    }
+    #id_hitcounts{
+         pointer-events: none;
+    }
+</style>
+<div class="form-root">
+<h1 class="heading">Edit Post</h1>
+
+{% if messages %}
+
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+     <li class="list-group-item list-group-item-success my-4"> {{ message}}</li>
+      {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+       <li class="list-group-item list-group-item-danger my-4"> {{ message}}</li>
+      {%endif%}
+    {% endfor %}
+
+{% endif %}
+
+{% if error %}
+{{ error }}
+{% endif %}
+
+<form action="" method="POST" class="form-group" enctype="multipart/form-data">
+{% csrf_token %}
+{{form.media}}
+{{ form.as_p }}
+{{cform.as_p}}
+<input type="submit" value="Edit Post" class="btn btn-success subbutton">
+</form>
+<br/><br/>
+</div>
+
+{%endblock%}

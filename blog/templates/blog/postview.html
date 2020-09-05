@@ -1,0 +1,52 @@
+{%extends 'blog/base.html'%}
+
+	{%block content%}
+
+<style>
+	.post-body{
+		margin-top:40px !important;
+		margin-bottom:20px;
+		width:80%;
+		text-align:left;
+	}
+
+	.post-body img{
+		width:100% !important;
+		height:80% !important;
+	}
+	.heading{
+		margin-bottom:0;
+		font-weight:bold;
+	}
+	.post-content{
+		margin-top:15px;
+	}
+</style>
+
+
+
+	<div class="container post-body">
+
+<h1 class="heading">{{post.title}}</h1>
+<small class="text-muted ml-2">Published At: {{post.createdAt}} </small>
+<br>
+<small class="text-muted ml-2">Last Updated At: {{post.updatedAt}} </small>
+<br>
+<small class="text-muted ml-2">Total Views: {{hitcounts}} </small>
+
+<div class="post-content">
+{{post.content|safe}}
+</div>
+<h3 style="display:inline;">Tags:</h3>
+ {% for tag in post.tags.all %}
+      <a href="/tags/{{tag}}" class="mr-1 badge badge-success" class="tagselect" style="line-height:1.5;font-size:100%;"># {{ tag }}</a>
+ {% endfor %}
+ {% load comment_tags %}
+  
+{% include_static %}
+{% render_comments post request %} 
+ 
+</div>
+
+
+{%endblock%}
