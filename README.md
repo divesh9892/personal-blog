@@ -9,26 +9,26 @@ A pretty easy django personal blog app.
 https://github.com/divesh9892/personal-blog.git
 ```
 
--Install dependencies
+- Install dependencies
 
 ```
 $pip install -r requirements.txt
 ```
 
--Run django migrations
+- Run django migrations
 
 ```
 $python manage.py makemigrations
 $python manage.py migrate
 ```
 
--Create a superuser
+- Create a superuser
 
 ```
 $python manage.py createsuperuser
 ```
 
--Run the server
+- Run the server
 
 ```
 $python manage.py runserver
