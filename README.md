@@ -1,5 +1,5 @@
 # personal-blog
-A pretty easy django personal blog app.
+A simple django personal blog app.
 
 ## Installation
 
